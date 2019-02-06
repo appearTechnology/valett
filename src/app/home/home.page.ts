@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import * as moment from 'moment';
@@ -13,14 +14,15 @@ export class HomePage {
   today: any
   data: any
 
-  constructor(private flashlight: Flashlight) { }
+  constructor(private router: Router, private flashlight: Flashlight) { }
 
   ngOnInit(){
 
   }
 
   switch() {
-
+    console.log("haha");
+    this.router.navigateByUrl('scanner');
   }
 
 }
