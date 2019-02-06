@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'parking-meter-set', loadChildren: './parking-meter-set/parking-meter-set.module#ParkingMeterSetPageModule' }
 ];
 
 @NgModule({
