@@ -4,14 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-import { LottieAnimationViewModule } from 'ng-lottie';
 
-import { ScannerPage } from './scanner.page';
+import { SignupPage } from './signup.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ScannerPage
+    component: SignupPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    LottieAnimationViewModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ScannerPage]
+  declarations: [SignupPage]
 })
-export class ScannerPageModule {}
+export class SignupPageModule {}

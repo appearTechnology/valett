@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ModalController } from '@ionic/angular';
+
+import { ListPage } from './list/list.page';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +20,7 @@ export class AppComponent {
     },
     {
       title: 'List',
-      url: '/list',
+      //url: '/list',
       icon: 'list'
     }
   ];
@@ -25,7 +28,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public modalController: ModalController
   ) {
     this.initializeApp();
   }
@@ -36,4 +40,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+
+
 }

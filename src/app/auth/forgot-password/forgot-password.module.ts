@@ -4,14 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-import { LottieAnimationViewModule } from 'ng-lottie';
 
-import { ScannerPage } from './scanner.page';
+import { ForgotPasswordPage } from './forgot-password.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ScannerPage
+    component: ForgotPasswordPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    LottieAnimationViewModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ScannerPage]
+  declarations: [ForgotPasswordPage]
 })
-export class ScannerPageModule {}
+export class ForgotPasswordPageModule {}

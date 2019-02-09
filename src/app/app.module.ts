@@ -11,6 +11,19 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { Flashlight } from '@ionic-native/flashlight/ngx';
+import { OpenNativeSettings } from '@ionic-native/open-native-settings/ngx';
+
+
+import { AngularFireModule } from 'angularfire2'
+import { environment } from '../environments/environment'
+import { AngularFireAuthModule } from 'angularfire2/auth'
+import { AngularFirestoreModule } from 'angularfire2/firestore'
+
+import { ForgotPasswordPageModule } from './auth/forgot-password/forgot-password.module'
+
+import { LottieAnimationViewModule } from 'ng-lottie';
+//import { LoaderFlowComponent } from './components/loader-flow/loader-flow.component';
+import { ComponentsModule } from './components/components.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,15 +31,22 @@ import { Flashlight } from '@ionic-native/flashlight/ngx';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase, 'valett'),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    ForgotPasswordPageModule,
+    LottieAnimationViewModule.forRoot(),
+    ComponentsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Flashlight,
     QRScanner,
+    OpenNativeSettings,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    
+
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <h3 class="title">Create an account.</h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+<form #loginForm="ngForm" (submit)="onSubmit(loginForm)" class="signup-form" no-lines>
+  <ion-item class="item" lines="none">
+    <input class="input" placeholder="email" type="email" name="email" [(ngModel)]="email" required/>
+  </ion-item>
+  <ion-item class="item" lines="none">
+    <input class="input" placeholder="password" type="password" name="password" [(ngModel)]="password" required/>
+  </ion-item>
+  <div class="button-item" no-lines>
+  <input class="call-to-action" type="submit" value="Create Account">
+</div>
+</form>
+<h3 class="header-paragraph-light" (click)="toLogin()">Already have an account? Login</h3>
+</ion-content>

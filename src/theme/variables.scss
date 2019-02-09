@@ -75,3 +75,16 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('../assets/fonts/Avenir.ttf');
+  //font-weight: 200;
+  font-style: normal;
+}
+
+.title{
+  font-family: 'Avenir';
+  font-style: normal;
+  letter-spacing: 2px;
+}

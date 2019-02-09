@@ -1,8 +1,20 @@
 ion-content{
     --background: var(--ion-background-color, transparent) !important;
+    --overflow: hidden;
 }
 
+
+
 ion-toolbar {
-    --background: transparent;
+    --background: #000000;
     --ion-color-base: transparent !important;
+}
+
+.no-permission{
+  background: #242424
+}
+
+.title{
+  font-size: 12px;
+  font-weight: 300
 }
