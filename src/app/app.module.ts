@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings/ngx';
 
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 import { AngularFireModule } from 'angularfire2'
 import { environment } from '../environments/environment'
@@ -45,6 +46,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     SplashScreen,
     Flashlight,
     Geolocation,
+    AndroidPermissions,
     QRScanner,
     OpenNativeSettings,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
