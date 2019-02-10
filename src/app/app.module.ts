@@ -24,6 +24,7 @@ import { ForgotPasswordPageModule } from './auth/forgot-password/forgot-password
 import { LottieAnimationViewModule } from 'ng-lottie';
 //import { LoaderFlowComponent } from './components/loader-flow/loader-flow.component';
 import { ComponentsModule } from './components/components.module'
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +44,7 @@ import { ComponentsModule } from './components/components.module'
     StatusBar,
     SplashScreen,
     Flashlight,
+    Geolocation,
     QRScanner,
     OpenNativeSettings,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

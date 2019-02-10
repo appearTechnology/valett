@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 
 import { ListPage } from './list/list.page';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'

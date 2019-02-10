@@ -1,24 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-
+<ion-content fullscreen="true">
+  <img class="hamburger" (click)="openMenu()" src="../../assets/icon/menu-button.png" />
+  <div #map id="map">
+    
+  </div>
+  <img (click)="dropMark()" src="../../assets/icon/mark.png" class="mark"/>
+  <ion-footer class="footer">
+    <ion-button class="buttons" (click)="switch()" expand="block">Scan Parking</ion-button>
+    <ion-button class="buttons" (click)="logout()" expand="block">logout</ion-button>
+  </ion-footer>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-button (click)="switch()" expand="block">Scan Parking</ion-button>
-  </ion-toolbar>
-  <ion-toolbar>
-    <ion-button (click)="logout()" expand="block">logout</ion-button>
-  </ion-toolbar>
-</ion-footer>
