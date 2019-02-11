@@ -5,6 +5,7 @@ import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Platform, MenuController, ToastController } from '@ionic/angular';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 declare var google;
 
 @Component({
@@ -30,6 +31,7 @@ export class HomePage {
     private androidPermissions: AndroidPermissions,
     private geolocation: Geolocation,
     public plt: Platform,
+    private diagnostic: Diagnostic,
     public menuCtrl: MenuController,
     private authService: AuthServiceService, 
     private toastCtrl: ToastController) {
@@ -84,6 +86,10 @@ export class HomePage {
   }
 
   ngOnInit() {
+
+    let successCallback = (isAvailable) => { console.log('Is available? ' + isAvailable); }
+    let errorCallback = (e) => console.error(e);
+
     if (this.plt.is('android')) {
       this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION).then(
         result => {
@@ -101,6 +107,14 @@ export class HomePage {
         },
       err => {
         console.log("permission error =>", err);
+      });
+    }else{
+
+      this.plt.ready().then(() => {
+        // this.diagnostic.isLocationAvailable().then( state => {
+          // console.log(state);
+          this.getGeolocation();
+        // }).catch(e => console.error(e));
       });
     }
   }

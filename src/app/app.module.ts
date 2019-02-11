@@ -26,6 +26,7 @@ import { LottieAnimationViewModule } from 'ng-lottie';
 //import { LoaderFlowComponent } from './components/loader-flow/loader-flow.component';
 import { ComponentsModule } from './components/components.module'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +48,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     Flashlight,
     Geolocation,
     AndroidPermissions,
+    Diagnostic,
     QRScanner,
     OpenNativeSettings,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

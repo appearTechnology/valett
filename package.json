@@ -23,6 +23,7 @@
     "@angular/router": "^7.2.2",
     "@ionic-native/android-permissions": "^5.0.0",
     "@ionic-native/core": "^5.0.0",
+    "@ionic-native/diagnostic": "^5.0.0",
     "@ionic-native/flashlight": "^5.0.0",
     "@ionic-native/geolocation": "^5.0.0",
     "@ionic-native/open-native-settings": "^5.0.0",
