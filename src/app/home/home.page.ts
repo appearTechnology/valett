@@ -33,8 +33,8 @@ export class HomePage {
     public plt: Platform,
     private diagnostic: Diagnostic,
     public menuCtrl: MenuController,
-    private authService: AuthServiceService, 
-    private toastCtrl: ToastController) {
+    private authService: AuthServiceService,
+    private toastCtrl: ToastController,) {
 
 
   }
@@ -52,8 +52,9 @@ export class HomePage {
       let options = { enableHighAccuracy: true, maximumAge: 10000 };
       console.log("Fetching............");
       this.geolocation.getCurrentPosition(options).then((resp) => {
-        this.marker.setMap(null);
-        this.addMarker(resp.coords.latitude, resp.coords.longitude);
+        let location = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude)
+        this.centerMap(location);
+        this.markerSetPosition(location);
       }).catch((error) => {
         console.log(error);
       });
@@ -62,21 +63,15 @@ export class HomePage {
     });
   }
 
-  // addMarker(lat, lng){
-  //   this.marker = new google.maps.Marker({
-  //     map: this.map,
-  //     animation: google.maps.Animation.DROP,
-  //     position: new google.maps.LatLng(lat, lng),
-  //     icon: '../../assets/icon/pin.png'
-  //   });
-  // }
-
   getLocation() {
     this.plt.ready().then(() => {
       let options = { enableHighAccuracy: true, maximumAge: 10000 };
       console.log("Fetching............");
       this.geolocation.getCurrentPosition(options).then((resp) => {
         this.loadMap(resp.coords.latitude, resp.coords.longitude);
+        let updatelocation = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+        this.addMarker(updatelocation);
+        this.getGeolocation();
       }).catch((error) => {
         console.log(error);
       });
@@ -95,66 +90,53 @@ export class HomePage {
         result => {
           console.log(result.hasPermission);
           if (result.hasPermission == true) {
-            this.getGeolocation();
+            this.getLocation();
           } else {
             this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION).then(data => {
               console.log(data);
-              if(data.hasPermission == true){
-                this.getGeolocation();
+              if (data.hasPermission == true) {
+                this.getLocation();
               }
             })
           }
         },
-      err => {
-        console.log("permission error =>", err);
-      });
-    }else{
+        err => {
+          console.log("permission error =>", err);
+        });
+    } else {
 
       this.plt.ready().then(() => {
-        // this.diagnostic.isLocationAvailable().then( state => {
-          // console.log(state);
-          this.getGeolocation();
-        // }).catch(e => console.error(e));
+          this.getLocation();
       });
     }
   }
   getGeolocation() {
-    this.getLocation();
+
     let watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
       this.x = data.coords.latitude;
       this.y = data.coords.longitude;
 
-      this.deleteMarkers();
+
       let updatelocation = new google.maps.LatLng(data.coords.latitude, data.coords.longitude);
-      let image = 'assets/imgs/blue-bike.png';
-      this.addMarker(updatelocation, image);
-      this.setMapOnAll(this.map);
+      this.markerSetPosition(updatelocation);
     });
   }
-  addMarker(location, image) {
-    let marker = new google.maps.Marker({
-      position: location,
-      map: this.map,
-      icon: '../../assets/icon/pin.png'
-    });
-    this.markers.push(marker);
-  }
 
-  setMapOnAll(map) {
-    for (var i = 0; i < this.markers.length; i++) {
-      this.markers[i].setMap(map);
-    }
-  }
 
-  clearMarkers() {
-    this.setMapOnAll(null);
-  }
+  markerSetPosition(latlng){
+   this.marker.setPosition(latlng);
+ }
 
-  deleteMarkers() {
-    this.clearMarkers();
-    this.markers = [];
-  }
+ addMarker(location) {
+  this.marker = new google.maps.Marker({
+     position: location,
+     map: this.map,
+     icon: '../../assets/icon/location.png',
+   });
+ }
+
+
 
   loadMap(lat, lng) {
 
@@ -171,7 +153,7 @@ export class HomePage {
     ];
 
     var mapOptions = {
-      zoom: 15,
+      zoom: 17,
       scaleControl: false,
       streetViewControl: false,
       zoomControl: false,
@@ -191,8 +173,13 @@ export class HomePage {
 
   }
 
+  centerMap(latLng){
+    this.map.setZoom(15);
+    this.map.panTo(latLng);
+  }
+
   switch() {
-    console.log("haha");
+
     this.router.navigateByUrl('scanner');
   }
 

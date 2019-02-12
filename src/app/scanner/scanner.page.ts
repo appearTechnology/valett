@@ -4,6 +4,8 @@ import { OpenNativeSettings } from '@ionic-native/open-native-settings/ngx';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { ParkingMeterSetPage } from '../parking-meter-set/parking-meter-set.page'
 
 @Component({
   selector: 'page-scanner',
@@ -27,7 +29,8 @@ export class ScannerPage implements OnInit {
     private qrScanner: QRScanner,
     private openNativeSettings: OpenNativeSettings,
     public alertController: AlertController,
-    public menuCtrl: MenuController, ) {
+    public menuCtrl: MenuController,
+    public modalController: ModalController) {
 
     this.lottieConfig = {
       path: '../../assets/animations/qr-scan.json',
@@ -35,113 +38,128 @@ export class ScannerPage implements OnInit {
       autoplay: true,
       loop: true
     };
-}
+  }
 
-handleAnimation(anim: any) {
-  this.anim = anim;
-}
+  handleAnimation(anim: any) {
+    this.anim = anim;
+  }
 
-ngOnInit() {
-  //  this.prepareCamera();
-  //this.OpenSettings()
-  this.anim.play();
-}
+  ngOnInit() {
+    //  this.prepareCamera();
+    //this.OpenSettings()
+    this.anim.play();
+  }
 
-ionViewWillEnter() {
-  this.menuCtrl.enable(false);
-}
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 
-ionViewDidEnter() {
-  this.prepareCamera();
-}
+  ionViewDidEnter() {
+    this.prepareCamera();
+  }
 
-prepareCamera() {
-  this.qrScanner.prepare()
-    .then((status: QRScannerStatus) => {
-      if (status.authorized) {
-        console.log('Camera Permission Given');
-        this.CameraEnabled = 3
-        this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
-          console.log('Scanned something', text);
-          if (this.showCamera) {
-            alert(text);
-          }
-        });
-        this.qrScanner.show();
-      } else if (status.denied) {
-        console.log('Camera permission denied');
-        this.CameraEnabled = 2
-        this.OpenSettings()
-      } else {
-        console.log('Permission denied for this runtime.');
-        this.CameraEnabled = 2
-        this.OpenSettings()
-      }
-    })
-    .catch((e: any) => console.log('Error is', e))
-    .catch((e: any) => {
-      console.log('Error is', e);
-      this.router.navigateByUrl('home');
-      this.qrScanner.destroy();
-      this.openNativeSettings.open("application_details");
-    });
-}
+  prepareCamera() {
+    this.qrScanner.prepare()
+      .then((status: QRScannerStatus) => {
+        if (status.authorized) {
+          console.log('Camera Permission Given');
+          this.CameraEnabled = 3
+          this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
+            console.log('Scanned something', text);
+            if (this.showCamera) {
+              alert(text);
+              //this.router.navigateByUrl('parking-meter-set');
+            }
+          });
+          this.qrScanner.show();
+        } else if (status.denied) {
+          console.log('Camera permission denied');
+          this.CameraEnabled = 2
+          this.OpenSettings()
+        } else {
+          console.log('Permission denied for this runtime.');
+          this.CameraEnabled = 2
+          this.OpenSettings()
+        }
+      })
+      .catch((e: any) => console.log('Error is', e))
+      .catch((e: any) => {
+        console.log('Error is', e);
+        this.router.navigateByUrl('home');
+        this.qrScanner.destroy();
+        this.openNativeSettings.open("application_details");
+      });
+  }
 
-switch () {
+  next(){
+    this.presentModal()
+  }
+
+  switch() {
     if (this.showCamera) {
-  this.showCamera = false;
-  this.showText = true;
-  this.qrScanner.hide();
-} else {
-  this.showCamera = true;
-  this.showText = false;
-  this.prepareCamera();
-}
+      this.showCamera = false;
+      this.showText = true;
+      this.qrScanner.hide();
+    } else {
+      this.showCamera = true;
+      this.showText = false;
+      this.prepareCamera();
+    }
   }
 
-close() {
-  this.router.navigateByUrl('home');
-  this.qrScanner.destroy();
-}
-
-viewWillDisappear() {
-  this.qrScanner.destroy();
-}
-
-flash() {
-  if (!this.flashEnable) {
-    this.qrScanner.enableLight();
-    this.flashEnable = true;
-  } else {
-    this.qrScanner.disableLight();
-    this.flashEnable = false;
+  close() {
+    this.router.navigateByUrl('home');
+    //this.modalCtrl.dismiss();
+    this.qrScanner.destroy();
   }
-}
 
-openSettings() {
-  this.openNativeSettings.open("application_details");
-}
 
-async OpenSettings() {
-  const alert = await this.alertController.create({
-    header: '🖐',
-    message: 'Please enable your camera settings',
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
-          this.close()
+  viewWillDisappear() {
+    this.qrScanner.destroy();
+  }
+
+  flash() {
+    if (!this.flashEnable) {
+      this.qrScanner.enableLight();
+      this.flashEnable = true;
+    } else {
+      this.qrScanner.disableLight();
+      this.flashEnable = false;
+    }
+  }
+
+  openSettings() {
+    this.openNativeSettings.open("application_details");
+  }
+
+  async presentModal() {
+   const modal = await this.modalController.create({
+     component: ParkingMeterSetPage,
+     componentProps: { value: 123 }
+   });
+   return await modal.present();
+ }
+
+  async OpenSettings() {
+    const alert = await this.alertController.create({
+      header: '🖐',
+      message: 'Please enable your camera settings',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            this.close()
+          }
+        }, {
+          text: 'Open Settings',
+          handler: () => {
+            this.openSettings()
+          }
         }
-      }, {
-        text: 'Open Settings',
-        handler: () => {
-          this.openSettings()
-        }
-      }
-    ]
-  });
-  await alert.present();
-}
+      ]
+    });
+    await alert.present();
+  }
 }

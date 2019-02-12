@@ -1,9 +1,59 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>parking-meter-set</ion-title>
+  <ion-toolbar class="toolbar">
+    <ion-button (click)="close()" ion-button icon-only fill="clear" size="large" color="dark">
+      <ion-icon name="close" style="color: white"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-row>
+    <ion-col size="3">
+      <div class="center">
+        <button ion-button class="circle-btn" (click)="subtract()">
+          <ion-icon name="remove" style="color: white"></ion-icon>
+        </button>
+      </div>
+    </ion-col>
+    <ion-col>
+      <h3 class="minutes-no">{{ this.minutes }}</h3>
+      <p class="minutes">MINUTES</p>
+      <p class="price">$ {{ this.total }}</p>
+    </ion-col>
+    <ion-col size="3">
+      <div class="center">
+        <button ion-button class="circle-btn" (click)="add()">
+          <ion-icon name="add" style="color: white"></ion-icon>
+        </button>
+      </div>
+    </ion-col>
+  </ion-row>
 
 </ion-content>
+
+<ion-footer class="footer">
+  <div class="details">
+    <div class="options">
+      <div class="vehicle" detail>
+        <p class="p">
+          Audi A3
+        </p>
+        <ion-item detail>
+          <h3 class="h3">NBR 33 X</h3>
+        </ion-item>
+      </div>
+
+      <div class="vehicle" detail>
+        <p class="p">
+          Audi A3
+        </p>
+        <ion-item detail>
+          <h3 class="h3">*** 456</h3>
+        </ion-item>
+      </div>
+      <div class="button-start-div">
+      <button ion-button class="start">start</button>
+      </div>
+    </div>
+  </div>
+</ion-footer>
