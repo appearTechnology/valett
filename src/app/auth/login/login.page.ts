@@ -52,7 +52,7 @@ export class LoginPage implements OnInit {
   async ErrorPresentToast() {
     const toast = await this.toastController.create({
       message: 'Sorry we could not log you in, check signup details and try again',
-      duration: 4000,
+      duration: 3000,
       position: 'top',
     });
     toast.present();

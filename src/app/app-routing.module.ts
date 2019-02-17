@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     redirectTo: 'home',
     pathMatch: 'full'
   },
@@ -20,7 +20,10 @@ const routes: Routes = [
   { path: 'login', loadChildren: './auth/login/login.module#LoginPageModule' },
   { path: 'signup', loadChildren: './auth/signup/signup.module#SignupPageModule' },
   //{ path: 'forgot-password', loadChildren: './auth/forgot-password/forgot-password.module#ForgotPasswordPageModule' },
-  { path: 'check-auth', loadChildren: './auth/check-auth/check-auth.module#CheckAuthPageModule' }
+  { path: '', loadChildren: './auth/check-auth/check-auth.module#CheckAuthPageModule' },
+  { path: 'car-list', loadChildren: './car/car-list/car-list.module#CarListPageModule' },
+  { path: 'register-vehicle', loadChildren: './car/register-vehicle/register-vehicle.module#RegisterVehiclePageModule' },
+  { path: 'scan-vehicle', loadChildren: './car/scan-vehicle/scan-vehicle.module#ScanVehiclePageModule' }
 ];
 
 @NgModule({

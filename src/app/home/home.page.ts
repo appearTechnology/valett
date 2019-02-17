@@ -19,6 +19,7 @@ export class HomePage {
   map: any;
   positionSubscription: any;
   today: any
+  circle: any;
   data: any
   x: any;
   y: any;
@@ -34,7 +35,7 @@ export class HomePage {
     private diagnostic: Diagnostic,
     public menuCtrl: MenuController,
     private authService: AuthServiceService,
-    private toastCtrl: ToastController,) {
+    private toastCtrl: ToastController, ) {
 
 
   }
@@ -106,10 +107,11 @@ export class HomePage {
     } else {
 
       this.plt.ready().then(() => {
-          this.getLocation();
+        this.getLocation();
       });
     }
   }
+
   getGeolocation() {
 
     let watch = this.geolocation.watchPosition();
@@ -124,17 +126,37 @@ export class HomePage {
   }
 
 
-  markerSetPosition(latlng){
-   this.marker.setPosition(latlng);
- }
+  markerSetPosition(latlng) {
+    this.marker.setPosition(latlng);
+  }
 
- addMarker(location) {
-  this.marker = new google.maps.Marker({
-     position: location,
-     map: this.map,
-     icon: '../../assets/icon/location.png',
-   });
- }
+  addMarker(location) {
+    var circle = {
+      path: google.maps.SymbolPath.CIRCLE,
+      fillColor: '#3e6bff',
+      fillOpacity: 1,
+      scale: 6,
+      strokeColor: '#fff',
+      strokeWeight: 0,
+      strokeOpacity: 0,
+
+    }
+    this.marker = new google.maps.Marker({
+      position: location,
+      map: this.map,
+      icon: circle,
+    });
+    this.circle = new google.maps.Circle({
+      strokeColor: '#3e6bff',
+      strokeOpacity: 0,
+      strokeWeight: 2,
+      fillColor: '#3e6bff',
+      fillOpacity: 0.2,
+      map: this.map,
+      center: location,
+      radius: 30
+    })
+  }
 
 
 
@@ -173,13 +195,12 @@ export class HomePage {
 
   }
 
-  centerMap(latLng){
+  centerMap(latLng) {
     this.map.setZoom(15);
     this.map.panTo(latLng);
   }
 
   switch() {
-
     this.router.navigateByUrl('scanner');
   }
 

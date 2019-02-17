@@ -1,0 +1,88 @@
+ion-toolbar {
+  --background: #ECF0F1;
+  --ion-color-base: transparent !important;
+}
+
+ion-content {
+  --overflow: hidden;
+}
+
+.registration {
+  font-family: 'Avenir';
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+  margin: 0;
+}
+
+.model {
+  font-family: 'Avenir';
+  font-size: 14px;
+  font-weight: 300;
+  color: black;
+  margin: 0;
+}
+
+.add {
+  height: 50px;
+  width: 70%;
+  background-color: #0a64fd;
+  border-radius: 0;
+  margin: auto;
+  display: flex;
+  color: white;
+  justify-content: center;
+  border-width: 0;
+  border-color: transparent;
+  margin-bottom: 60px;
+  text-align: center;
+  font-family: 'Avenir';
+  font-size: 18px;
+}
+
+.car-image {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 70%;
+}
+
+.image-container {
+  margin-top: 60px;
+}
+
+.register-button {
+  height: 50px;
+  width: 70%;
+  background-color: #000;
+  border-radius: 0;
+  margin: auto;
+  display: flex;
+  color: white;
+  justify-content: center;
+  border-width: 0;
+  border-color: transparent;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: 'Avenir';
+  font-size: 18px;
+}
+
+.scan-button {
+  margin-top: 22px;
+  height: 50px;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 0;
+  margin: auto;
+  display: flex;
+  color: #000;
+  justify-content: center;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  margin-bottom: 60px;
+  text-align: center;
+  font-family: 'Avenir';
+  font-size: 18px;
+}

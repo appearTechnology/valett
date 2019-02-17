@@ -1,18 +1,19 @@
-<ion-header>
-  <ion-toolbar class="toolbar">
-    <ion-button (click)="close()" ion-button icon-only fill="clear" size="large" color="dark">
-      <ion-icon name="close" style="color: white"></ion-icon>
-    </ion-button>
-  </ion-toolbar>
-</ion-header>
+<ion-content *ngIf="this.loaded == 1" padding>
 
-<ion-content padding>
+  <div class="header">
+    <ion-toolbar class="toolbar">
+      <ion-button (click)="close()" ion-button icon-only fill="clear" size="large" color="dark">
+        <ion-icon name="close" style="color: white"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </div>
   <ion-row>
     <ion-col size="3">
       <div class="center">
-        <button ion-button class="circle-btn" (click)="subtract()">
+        <!--<button ion-button class="circle-btn" (click)="subtract()">
           <ion-icon name="remove" style="color: white"></ion-icon>
-        </button>
+        </button>-->
+        <img class="circle-btn" (click)="subtract()" src="../assets/subtract.svg" />
       </div>
     </ion-col>
     <ion-col>
@@ -22,38 +23,102 @@
     </ion-col>
     <ion-col size="3">
       <div class="center">
-        <button ion-button class="circle-btn" (click)="add()">
+        <img class="circle-btn" (click)="add()" src="../assets/add.svg" />
+        <!--<button ion-button class="circle-btn" (click)="add()">
           <ion-icon name="add" style="color: white"></ion-icon>
-        </button>
+        </button>-->
       </div>
     </ion-col>
   </ion-row>
 
 </ion-content>
 
+
+<ion-content *ngIf="this.loaded == 0" padding>
+
+  <div class="header">
+    <ion-toolbar class="toolbar">
+      <ion-button (click)="close()" ion-button icon-only fill="clear" size="large" color="dark">
+        <ion-icon name="close" style="color: white"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </div>
+  <ion-row>
+    <ion-col size="3">
+      <div class="center">
+        <!--<button ion-button class="circle-btn" (click)="subtract()">
+          <ion-icon name="remove" style="color: white"></ion-icon>
+        </button>-->
+        <img class="circle-btn" src="../assets/subtract.svg" />
+      </div>
+    </ion-col>
+    <ion-col>
+      <h3 class="minutes-no">{{ this.minutes }}</h3>
+      <p class="minutes">MINUTES</p>
+      <p class="price">$ {{ this.total }}</p>
+    </ion-col>
+    <ion-col size="3">
+      <div class="center">
+        <img class="circle-btn" src="../assets/add.svg" />
+        <!--<button ion-button class="circle-btn" (click)="add()">
+          <ion-icon name="add" style="color: white"></ion-icon>
+        </button>-->
+      </div>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+
+
 <ion-footer class="footer">
   <div class="details">
     <div class="options">
       <div class="vehicle" detail>
-        <p class="p">
-          Audi A3
-        </p>
-        <ion-item detail>
-          <h3 class="h3">NBR 33 X</h3>
-        </ion-item>
+
+        <ion-row class="payment-row">
+          <ion-col size="3">
+            <div class="center">
+              <img class="car-icon" src="../assets/uber-go.svg" />
+            </div>
+          </ion-col>
+          <ion-col>
+            <!--<p class="p">Audi A3</p>-->
+            <h3 class="card">NBR 33 X</h3>
+          </ion-col>
+          <ion-col size="3">
+            <div class="center">
+              <img class="down-arrow" src="../assets/down-arrow.svg" />
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <div class="seporator-line"></div>
+
+        <ion-row class="payment-row">
+          <ion-col size="3">
+            <div class="center">
+              <!--<button ion-button class="circle-btn" (click)="subtract()">
+                <ion-icon name="remove" style="color: white"></ion-icon>
+              </button>-->
+              <img class="cc-icon" src="../assets/visa.svg" />
+            </div>
+          </ion-col>
+          <ion-col>
+            <h3 class="card">• • • • 489</h3>
+          </ion-col>
+          <ion-col size="3">
+            <div class="center">
+              <img class="down-arrow" src="../assets/down-arrow.svg" />
+            </div>
+          </ion-col>
+        </ion-row>
+
       </div>
 
-      <div class="vehicle" detail>
-        <p class="p">
-          Audi A3
-        </p>
-        <ion-item detail>
-          <h3 class="h3">*** 456</h3>
-        </ion-item>
+      <div>
+        <button ion-button class="start">Start</button>
       </div>
-      <div class="button-start-div">
-      <button ion-button class="start">start</button>
-      </div>
+
     </div>
   </div>
 </ion-footer>

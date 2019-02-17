@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="close()" ion-button icon-only fill="clear" size="large" color="dark">
+      <ion-icon name="arrow-round-back" style="color: black"></ion-icon>
+    </ion-button>
+    <ion-title class="title" style="color: black; font-family: 'Avenir'; font-weight: 300">Register Vehicle</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content fullscreen no-padding>
+  <!--<img class="green-qr" src="../../assets/images/greenbg-qr.svg" />-->
+  <div class="grey-spacing"></div>
+  <img class="green-qr" src="../../assets/images/greenbg-qr.svg" />
+
+  <div *ngIf="newNumberPlate == true">
+
+  <div class="expaliner-text" padding>
+    <h3 class="explainer">
+    We create a unquie sticker barcode for every car registered. <br />
+    One sticker can be used by different accounts. <br/>
+    Each sticker costs $10</h3>
+  </div>
+
+
+  <div class="form-input-div">
+    <h3 class="input-label">Vehicle Details</h3>
+    <div class="item">
+      <input class="input" placeholder="Number Plate" type="rego_number" name="rego_number" [(ngModel)]="rego_number" required disabled/>
+    </div>
+    <div class="item">
+      <ion-select class="select" placeholder="State of registration" [(ngModel)]="state">
+      <ion-select-option value="nsw">NSW</ion-select-option>
+      <ion-select-option value="QLD">QLD</ion-select-option>
+      <ion-select-option value="SA">SA</ion-select-option>
+      <ion-select-option value="TAS">TAS</ion-select-option>
+      <ion-select-option value="VIC">VIC</ion-select-option>
+      <ion-select-option value="WA">WA</ion-select-option>
+    </ion-select>
+    </div>
+
+    <div class="item">
+      <ion-select class="select" placeholder="Vehicle model" [(ngModel)]="car_type">
+      <ion-select-option value="Audi">Audi</ion-select-option>
+      <ion-select-option value="BMW">BMW</ion-select-option>
+      <ion-select-option value="Ford">Ford</ion-select-option>
+      <ion-select-option value="Holden">Holden</ion-select-option>
+      <ion-select-option value="Hyundai">Hyundai</ion-select-option>
+      <ion-select-option value="Kia">Kia</ion-select-option>
+    </ion-select>
+    </div>
+
+    <div class="item">
+      <ion-select class="select" placeholder="Colour of vehicle" [(ngModel)]="colour">
+      <ion-select-option value="Black">Black</ion-select-option>
+      <ion-select-option value="Blue">Blue</ion-select-option>
+      <ion-select-option value="Bronze">Bronze</ion-select-option>
+      <ion-select-option value="Gold">Gold</ion-select-option>
+      <ion-select-option value="Green">Green</ion-select-option>
+      <ion-select-option value="Orange">Orange</ion-select-option>
+      <ion-select-option value="Red">Red</ion-select-option>
+      <ion-select-option value="Silver">Silver</ion-select-option>
+      <ion-select-option value="White">White</ion-select-option>
+    </ion-select>
+    </div>
+  </div>
+
+
+  <div class="form-input-div">
+    <h3 class="input-label">Your delivery address (where your unqiue sticker will be posted 1 - 5 day business days)</h3>
+    <div class="item">
+      <input class="input" placeholder="Address 1" type="Address1" name="Address1" [(ngModel)]="Address1" required/>
+    </div>
+    <div class="item">
+      <input class="input" placeholder="Address 2 (optional)" type="Address2" name="Address2" [(ngModel)]="Address2"/>
+    </div>
+    <div class="item">
+      <input class="input" placeholder="City" type="city" name="city" [(ngModel)]="City"/>
+    </div>
+    <div class="item">
+      <input class="input" placeholder="Post Code" type="postCode" name="postCode" [(ngModel)]="postCode"/>
+    </div>
+    <div class="item">
+      <ion-select class="select" placeholder="State of registration">
+      <ion-select-option value="nsw">NSW</ion-select-option>
+      <ion-select-option value="QLD">QLD</ion-select-option>
+      <ion-select-option value="SA">SA</ion-select-option>
+      <ion-select-option value="TAS">TAS</ion-select-option>
+      <ion-select-option value="VIC">VIC</ion-select-option>
+      <ion-select-option value="WA">WA</ion-select-option>
+    </ion-select>
+    </div>
+  </div>
+
+  <div class="form-input-div">
+    <h3 class="input-label">Payment Method</h3>
+    <div class="item">
+      <ion-select class="select" placeholder="• • • • 489">
+      <ion-select-option value="nsw">• • • • 489</ion-select-option>
+      <ion-select-option value="QLD">• • • • 878</ion-select-option>
+      <ion-select-option value="SA">• • • • 478</ion-select-option>
+      <ion-select-option value="TAS">• • • • 489</ion-select-option>
+    </ion-select>
+    </div>
+  </div>
+  <button ion-button class="add" style="margin-top: 40px;" (click)="regoCheck()">Confirm Purchase</button>
+  </div>
+
+
+
+
+  <div class="form-input-div" *ngIf="newNumberPlate == false">
+    <h3 class="input-label">Enter your numberplate (no spaces)</h3>
+    <div class="item">
+      <input class="input" placeholder="Number Plate" type="rego_number" name="rego_number" [(ngModel)]="rego_number" (ionChange)="setFilteredItems(rego_number)" required/>
+    </div>
+    <button ion-button class="add" style="margin-top: 40px;" (click)="regoCheck()">Confirm</button>
+  </div>
+</ion-content>

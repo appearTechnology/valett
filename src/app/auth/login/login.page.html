@@ -1,26 +1,52 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar>
     <h3 class="title">Login to your account.</h3>
   </ion-toolbar>
-</ion-header>
+</ion-header>-->
 
 
 <ion-content padding>
 
-  <form #loginForm="ngForm" (submit)="onSubmit(loginForm)" class="signup-form">
-    <ion-item class="item" lines="none">
-      <input class="input" placeholder="email" type="email" name="email" [(ngModel)]="email" required/>
-    </ion-item>
-    <ion-item class="item" lines="none">
-      <input class="input" placeholder="password" type="password" name="password" [(ngModel)]="password" required/>
-    </ion-item>
-    <div class="button-item" no-lines>
-    <input class="call-to-action" type="submit" value="Login">
+  <div class="header">
+
   </div>
+
+  <ion-row>
+    <ion-col size="3">
+      <div class="center">
+        <div class="seperator"></div>
+      </div>
+    </ion-col>
+    <ion-col>
+      <p class="title">Login</p>
+    </ion-col>
+    <ion-col size="3">
+      <div class="center">
+        <div class="seperator"></div>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <form #loginForm="ngForm" (submit)="onSubmit(loginForm)" class="signup-form">
+    <div class="item">
+      <input class="input" placeholder="Email" type="email" name="email" [(ngModel)]="email" required/>
+    </div>
+    <div class="item-white-space"></div>
+    <div class="item">
+      <input class="input" placeholder="Password" type="password" name="password" [(ngModel)]="password" required/>
+    </div>
+    <div class="button-white-space"></div>
+    <div class="button-item">
+      <input class="call-to-action" type="submit" value="Login">
+    </div>
   </form>
 
-  <h3 class="header-paragraph-light" (click)="toSignUp()">Sign up for an account</h3>
-  <h3 class="header-paragraph-light-grey" (click)="forgotPassword()">Forgot Password?</h3>
+  <div class="button-white-space"></div>
+
+
+  <h3 class="title-options" (click)="toSignUp()">Dont have an account?  <span class="span">Sign Up</span></h3>
+  <div class="item-white-space"></div>
+  <h3 class="title-options" (click)="forgotPassword()"><span class="span">Forgot Password ?</span></h3>
 
 
 </ion-content>

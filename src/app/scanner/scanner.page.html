@@ -15,7 +15,7 @@
 
 <ion-content fullscreen *ngIf="this.CameraEnabled == 3">
   <div style="position: absolute; width: 100%; margin-top: 20px; display: flex; align-items: center; justify-content: center;" (click)="switch()">
-    <img src="assets/qrcode.svg" id="testImage" style="height: 40px; width: 40px; margin-top: 30px;" />
+    <!--<img src="assets/qrcode.svg" id="testImage" style="height: 40px; width: 40px; margin-top: 30px;" />-->
     <!--<lottie-animation-view [options]="lottieConfig" [width]="300" [height]="600" (animCreated)="handleAnimation($event)">
     </lottie-animation-view>-->
   </div>
@@ -26,25 +26,28 @@
     </ion-item>
   </div>
   <div style="position: absolute; left: 0px; width: 100%; bottom: 100px; display: flex; flex: 1; justify-content: center; align-items: center; flex-direction: 'row';">
-    <button ion-button large *ngIf="showCamera" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0"><ion-icon name="create" style="width: 30px; height: 30px;"></ion-icon></button>
-    <button ion-button large *ngIf="showText" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0"><ion-icon name="qr-scanner" style="width: 30px; height: 30px;"></ion-icon></button>
-    <button ion-button large (click)="flash()" style="border-radius: 50%; width: 50px; height: 50px; background-color: white; padding: 0"><ion-icon name="flashlight" style="width: 30px; height: 30px;"></ion-icon></button>
+    <img *ngIf="showCamera" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0" src="../assets/code.svg" />
+    <img *ngIf="showText" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0" src="../assets/scan-qr.svg" />
+    <img (click)="flash()" style="border-radius: 50%; width: 50px; height: 50px; background-color: white; padding: 0" src="../assets/light.svg" />
   </div>
 </ion-content>
 
 <ion-content class="no-permission" fullscreen *ngIf="this.CameraEnabled == 2">
   <div style="position: absolute; width: 100%; margin-top: 20px; display: flex; align-items: center; justify-content: center;" (click)="switch()">
-    <img src="assets/qrcode.svg" id="testImage" style="height: 40px; width: 40px; margin-top: 30px;" />
+    <!--<img src="assets/qrcode.svg" id="testImage" style="height: 40px; width: 40px; margin-top: 30px;" />-->
   </div>
   <div style="height: 100%; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center" (click)="switch()">
     <img src="assets/focus.svg" *ngIf="showCamera" id="testImage" style="height: 200px;" />
-    <ion-item *ngIf="showText" style="border-radius: 8px;">
-      <ion-input placeholder="Code" style="text-align: center"></ion-input>
+    <ion-item *ngIf="showText" class="code">
+      <ion-input placeholder="Code" style="text-align: center; border-radius: 8px;"></ion-input>
     </ion-item>
   </div>
   <div style="position: absolute; left: 0px; width: 100%; bottom: 100px; display: flex; flex: 1; justify-content: center; align-items: center; flex-direction: 'row';">
-    <button ion-button large *ngIf="showCamera" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0"><ion-icon name="create" style="width: 30px; height: 30px;"></ion-icon></button>
-    <button ion-button large *ngIf="showText" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0"><ion-icon name="qr-scanner" style="width: 30px; height: 30px;"></ion-icon></button>
-    <button ion-button large (click)="flash()" style="border-radius: 50%; width: 50px; height: 50px; background-color: white; padding: 0"><ion-icon name="flashlight" style="width: 30px; height: 30px;"></ion-icon></button>
+    <!--<button ion-button large *ngIf="showCamera" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0"><ion-icon name="create" style="width: 30px; height: 30px;"></ion-icon></button>-->
+    <img *ngIf="showCamera" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0" src="../assets/code.svg" />
+    <img *ngIf="showText" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0" src="../assets/scan-qr.svg" />
+    <img (click)="flash()" style="border-radius: 50%; width: 50px; height: 50px; background-color: white; padding: 0" src="../assets/light.svg" />
+    <!--<button ion-button large *ngIf="showText" (click)="switch()" style="border-radius: 50%; width: 50px; height: 50px; margin-right: 30px; background-color: white; padding: 0"><ion-icon name="qr-scanner" style="width: 30px; height: 30px;"></ion-icon></button>
+    <button ion-button large (click)="flash()" style="border-radius: 50%; width: 50px; height: 50px; background-color: white; padding: 0"><ion-icon name="flashlight" style="width: 30px; height: 30px;"></ion-icon></button>-->
   </div>
 </ion-content>

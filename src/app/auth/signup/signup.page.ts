@@ -50,7 +50,7 @@ export class SignupPage implements OnInit {
   async ErrorPresentToast() {
    const toast = await this.toastController.create({
      message: 'Sorry we could not log you in, check signup details and try again',
-     duration: 4000,
+     duration: 3000,
      position: 'top',
    });
    toast.present();
@@ -59,7 +59,7 @@ export class SignupPage implements OnInit {
  async SuccessPresentToast() {
   const toast = await this.toastController.create({
     message: 'You have succesfully created an account, welcome to OPENHOME 😁',
-    duration: 4000,
+    duration: 3000,
     position: 'top',
   });
   toast.present();
@@ -68,7 +68,7 @@ export class SignupPage implements OnInit {
 async FailErrPresentToast(err: any) {
  const toast = await this.toastController.create({
    message: `${err}`,
-   duration: 4000,
+   duration: 3000,
    position: 'top',
  });
  toast.present();

@@ -1,0 +1,112 @@
+ion-toolbar {
+  --background: #ECF0F1;
+  --ion-color-base: transparent !important;
+  --border-color: transparent !important;
+  --border-width: 0;
+}
+
+ion-header {
+  --ion-color-base: transparent !important;
+}
+
+.green-qr {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  margin-top: -30px;
+}
+
+.grey-spacing {
+  margin-top: -90px;
+  height: 270px;
+  background-color: #ECF0F1;
+}
+
+.explainer {
+  text-align: center;
+  font-family: 'Avenir';
+  font-size: 15px;
+  font-weight: 400;
+  color: black;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-input-div {
+  margin-top: 30px;
+}
+
+.input-label {
+  text-align: left;
+  font-family: 'Avenir';
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  padding-left: 20px;
+}
+
+.item{
+  width: 90%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ECF0F1;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.input{
+  border-width: 1px;
+  border-color: transparent;
+  background-color: transparent;
+  width: 90%;
+  padding: 5px;
+  height: 42px;
+  margin-top: 10px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.input-rego{
+  border-width: 1px;
+  border-color: transparent;
+  background-color: transparent;
+  width: 90%;
+  color: black;
+  padding: 5px;
+  height: 42px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.form-input-div{
+  margin: 20px;
+  margin-top: 40px;
+}
+
+.add {
+  height: 50px;
+  width: 70%;
+  background-color: #0a64fd;
+  border-radius: 0;
+  margin: auto;
+  display: flex;
+  color: white;
+  justify-content: center;
+  border-width: 0;
+  border-color: transparent;
+  margin-bottom: 60px;
+  text-align: center;
+  font-family: 'Avenir';
+  font-size: 18px;
+}
+
+.select{
+  color: black;
+  width: 90%;
+}

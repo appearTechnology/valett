@@ -24,9 +24,9 @@ export class CheckAuthPage implements OnInit {
   auth() {
     const sub = this.authService.getAuth().subscribe(auth => {
       if (auth) {
-        //this.router.navigate(['home'])
+        this.router.navigate(['home'])
       } else {
-      //  this.router.navigate(['login'])
+       this.router.navigate(['login'])
       }
     });
     this.subs.push(sub)

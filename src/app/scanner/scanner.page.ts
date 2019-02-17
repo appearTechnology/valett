@@ -19,9 +19,7 @@ export class ScannerPage implements OnInit {
   showText = false;
   flashEnable = false;
   CameraEnabled = 2
-  public lottieConfig: Object;
-  private anim: any;
-  private animationSpeed: number = 1;
+
 
 
   constructor(
@@ -31,31 +29,20 @@ export class ScannerPage implements OnInit {
     public alertController: AlertController,
     public menuCtrl: MenuController,
     public modalController: ModalController) {
-
-    this.lottieConfig = {
-      path: '../../assets/animations/qr-scan.json',
-      renderer: 'canvas',
-      autoplay: true,
-      loop: true
-    };
   }
 
-  handleAnimation(anim: any) {
-    this.anim = anim;
-  }
 
   ngOnInit() {
-    //  this.prepareCamera();
-    //this.OpenSettings()
-    this.anim.play();
+
   }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
+    this.prepareCamera();
   }
 
   ionViewDidEnter() {
-    this.prepareCamera();
+
   }
 
   prepareCamera() {
@@ -67,8 +54,13 @@ export class ScannerPage implements OnInit {
           this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
             console.log('Scanned something', text);
             if (this.showCamera) {
-              alert(text);
-              //this.router.navigateByUrl('parking-meter-set');
+              //alert(text);
+              if (text.length == 4) {
+                this.presentModal()
+              } else {
+                alert("Sorry we could not match that, try again?");
+                this.prepareCamera();
+              }
             }
           });
           this.qrScanner.show();
@@ -91,7 +83,7 @@ export class ScannerPage implements OnInit {
       });
   }
 
-  next(){
+  next() {
     this.presentModal()
   }
 
@@ -133,12 +125,16 @@ export class ScannerPage implements OnInit {
   }
 
   async presentModal() {
-   const modal = await this.modalController.create({
-     component: ParkingMeterSetPage,
-     componentProps: { value: 123 }
-   });
-   return await modal.present();
- }
+    const modal = await this.modalController.create({
+      component: ParkingMeterSetPage,
+      componentProps: { value: 'abc123' }
+    });
+    modal.onDidDismiss().then(i => {
+      //this.close()
+      this.prepareCamera();
+    })
+    return await modal.present();
+  }
 
   async OpenSettings() {
     const alert = await this.alertController.create({

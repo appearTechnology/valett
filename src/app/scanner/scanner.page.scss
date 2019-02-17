@@ -4,7 +4,7 @@ ion-content{
 }
 
 ion-toolbar {
-    --background: #000000;
+    --background: #000;
     --ion-color-base: transparent !important;
 }
 
@@ -15,4 +15,8 @@ ion-toolbar {
 .title{
   font-size: 12px;
   font-weight: 300
+}
+
+.code{
+  border-radius: 8px;
 }

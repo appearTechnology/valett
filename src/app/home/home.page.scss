@@ -4,7 +4,7 @@ ion-content{
 }
 
 ion-toolbar {
-    --background: #000000;
+    //--background: #000000;
     --ion-color-base: transparent !important;
 }
 
@@ -36,7 +36,7 @@ ion-toolbar {
 
 .footer {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   background-color: transparent;
   padding: 10px;
 }
@@ -45,6 +45,7 @@ ion-toolbar {
   position: absolute;
   bottom: 160px;
   right: 0;
+  margin-right: 20px;
   height: 50px;
   width: 50px;
 }
@@ -56,11 +57,14 @@ ion-toolbar {
   height: 100px;
   border-radius: 50%;
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.5);
-  background-color: #181818;
+  background-color: #0A64FD;
   margin: auto;
   display: flex;
   justify-content: center;
   color: white;
   font-family: 'Avenir';
-  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
 }

@@ -38,7 +38,7 @@ export class ForgotPasswordPage implements OnInit {
   async passwordSuccess() {
     const toast = await this.toastController.create({
       message: 'You password has been successfully reset, please check your email 😁',
-      duration: 4000,
+      duration: 3000,
       position: 'top',
     });
     toast.present();
