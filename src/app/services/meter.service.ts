@@ -17,23 +17,26 @@ export class MeterService {
   constructor(private afs: AngularFirestore) { }
 
 
-getMeter(id) {
+  getMeter(id) {
+    this.meterCollection = this.afs.collection<Meter>('meters', ref => ref.where('council_id', '==', `${id}`))
+    this.meters = this.meterCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        if (a.payload.doc.exists == false) {
+          return null
+        } else {
+          const data = a.payload.doc.data() as Meter;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        }
 
-this.meterCollection = this.afs.collection<Meter>('meters', ref => ref.where('council_id', '==', `${id}`))
-this.meters = this.meterCollection.snapshotChanges().pipe(
-  map(actions => actions.map(a => {
-    if(a.payload.doc.exists == false){
-      return null
-    } else {
-      const data = a.payload.doc.data() as Meter;
-      const id = a.payload.doc.id;
-      return { id, ...data };
-    }
+      }))
+    );
+    return this.meters
+  }
 
-  }))
-);
-return this.meters
-}
+  setMeter(meter) {
+    var db = this.afs.collection(`vehicles`).add(meter)
+  }
 
 
 }

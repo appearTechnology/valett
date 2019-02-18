@@ -3,15 +3,22 @@
     <ion-button (click)="openMenu()" ion-button icon-only fill="clear" size="large" color="dark">
       <ion-icon name="menu" style="color: black"></ion-icon>
     </ion-button>
-      <ion-title class="title" style="color: black; font-family: 'Avenir'; font-weight: 300">My Vehicles</ion-title>
+    <ion-title class="title" style="color: black; font-family: 'Avenir'; font-weight: 300">My Vehicles</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding *ngIf="this.addVehicle == false">
-  <ion-list>
-    <ion-item detail>
-      <ion-label class="model" position="stacked">Audi</ion-label>
-      <ion-input class="registration" disabled>NBR 33 X</ion-input>
+  <ion-list *ngFor="let i of vehicles">
+    <ion-item *ngIf="this.i.rego_number == this.vehicle.rego_number" detail>
+      <ion-label class="model" position="stacked">{{i.car_type}}</ion-label>
+      <ion-input class="registration" disabled>
+        <ion-icon class="icon" name="checkmark-circle"></ion-icon>
+        {{i.rego_number}}
+      </ion-input>
+    </ion-item>
+    <ion-item (click)="setDefault(i)" *ngIf="this.i.rego_number != this.vehicle.rego_number" detail>
+      <ion-label class="model" position="stacked">{{i.car_type}}</ion-label>
+      <ion-input class="registration" disabled>{{i.rego_number}}</ion-input>
     </ion-item>
   </ion-list>
 </ion-content>
@@ -21,13 +28,13 @@
     <h3 style="color: black; font-family: 'Avenir'; font-weight: 500; margin-top: 20px; text-align: center; font-size: 20px;">Adding a new vehicle?</h3>
   </div>
   <div class="image-container">
-    <img class="car-image" src="../../assets/images/add-vehicle.svg"  />
+    <img class="car-image" src="../../assets/images/add-vehicle.svg" />
   </div>
 </ion-content>
 
 <ion-footer class="footer">
   <div *ngIf="this.addVehicle == false">
-    <button ion-button class="add" (click)="add()">Add Vehicle</button>
+    <button *ngIf="this.vehicles.length < 5" ion-button class="add" (click)="add()">Add Vehicle</button>
   </div>
 
   <div *ngIf="this.addVehicle == true">

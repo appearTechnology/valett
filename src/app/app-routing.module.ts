@@ -23,7 +23,9 @@ const routes: Routes = [
   { path: '', loadChildren: './auth/check-auth/check-auth.module#CheckAuthPageModule' },
   { path: 'car-list', loadChildren: './car/car-list/car-list.module#CarListPageModule' },
   { path: 'register-vehicle', loadChildren: './car/register-vehicle/register-vehicle.module#RegisterVehiclePageModule' },
-  { path: 'scan-vehicle', loadChildren: './car/scan-vehicle/scan-vehicle.module#ScanVehiclePageModule' }
+  { path: 'scan-vehicle', loadChildren: './car/scan-vehicle/scan-vehicle.module#ScanVehiclePageModule' },
+  { path: 'meter-started', loadChildren: './parking-meter/meter-started/meter-started.module#MeterStartedPageModule' },
+  //{ path: 'car-default', loadChildren: './car/car-default/car-default.module#CarDefaultPageModule' }
 ];
 
 @NgModule({

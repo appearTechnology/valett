@@ -24,11 +24,13 @@ ion-toolbar {
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
   background-color: #ffffff;
+  animation: fadeIn 1s;
 }
 
 .footer {
   //height: 40%;
   background-color: #2B2B2B;
+
 }
 
 .circle-btn {
@@ -169,4 +171,24 @@ ion-col {
   margin: auto;
   display: flex;
   justify-content: center;
+}
+
+.loading{
+  height: 100%;
+  width: 100%;
+  //background-color: black
+}
+
+.fade-in{
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1
+  }
 }

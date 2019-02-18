@@ -21,7 +21,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
 import { AngularFirestoreModule } from 'angularfire2/firestore'
 
 import { ForgotPasswordPageModule } from './auth/forgot-password/forgot-password.module'
-import { ParkingMeterSetPageModule } from './parking-meter-set/parking-meter-set.module'
+import { ParkingMeterSetPageModule } from './parking-meter/parking-meter-set/parking-meter-set.module'
+import { CarDefaultPageModule } from './car/car-default/car-default.module'
 
 import { LottieAnimationViewModule } from 'ng-lottie';
 //import { LoaderFlowComponent } from './components/loader-flow/loader-flow.component';
@@ -41,6 +42,7 @@ import { Diagnostic } from '@ionic-native/diagnostic/ngx';
     AngularFirestoreModule,
     ForgotPasswordPageModule,
     ParkingMeterSetPageModule,
+    CarDefaultPageModule,
     LottieAnimationViewModule.forRoot(),
     ComponentsModule
   ],

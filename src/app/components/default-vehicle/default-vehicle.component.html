@@ -1,0 +1,15 @@
+<ion-content padding *ngIf="this.addVehicle == false">
+  <ion-list *ngFor="let i of vehicles">
+    <ion-item *ngIf="this.i.rego_number == this.vehicle.rego_number" detail>
+      <ion-label class="model" position="stacked">{{i.car_type}}</ion-label>
+      <ion-input class="registration" disabled>
+        <ion-icon class="icon" name="checkmark-circle"></ion-icon>
+        {{i.rego_number}}
+      </ion-input>
+    </ion-item>
+    <ion-item (click)="setDefault(i)" *ngIf="this.i.rego_number != this.vehicle.rego_number" detail>
+      <ion-label class="model" position="stacked">{{i.car_type}}</ion-label>
+      <ion-input class="registration" disabled>{{i.rego_number}}</ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

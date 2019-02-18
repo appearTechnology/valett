@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform, MenuController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { VehicleService } from '../../services/vehicle.service'
 import { Vehicle } from '../../model/Vehicle'
 import { AuthServiceService } from '../../services/auth-service.service';
 import { Subscription } from 'rxjs';
+import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-car-list',
-  templateUrl: './car-list.page.html',
-  styleUrls: ['./car-list.page.scss'],
+  selector: 'app-car-default',
+  templateUrl: './car-default.page.html',
+  styleUrls: ['./car-default.page.scss'],
 })
-export class CarListPage implements OnInit {
+export class CarDefaultPage implements OnInit {
 
   addVehicle: boolean;
   uid: string;
@@ -20,13 +20,13 @@ export class CarListPage implements OnInit {
   vehicle: Vehicle;
 
   constructor(
-    public menuCtrl: MenuController,
     private router: Router,
     private vehicleService: VehicleService,
-    private authService: AuthServiceService, ) { }
+    private authService: AuthServiceService,
+    public modalController: ModalController,
+  ) { }
 
   ngOnInit() {
-    this.addVehicle = false
     this.auth()
   }
 
@@ -63,19 +63,11 @@ export class CarListPage implements OnInit {
 
   setDefault(i){
     this.vehicleService.setUserDefaultVehicle(i, this.uid)
+    this.close()
   }
 
-  openMenu() {
-    this.menuCtrl.open();
+  close() {
+    this.modalController.dismiss();
   }
-
-  add() {
-    this.addVehicle = true
-  }
-
-  register() {
-    this.router.navigateByUrl('register-vehicle');
-  }
-
 
 }

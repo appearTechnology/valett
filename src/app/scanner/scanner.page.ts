@@ -5,7 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { ParkingMeterSetPage } from '../parking-meter-set/parking-meter-set.page'
+import { ParkingMeterSetPage } from '../parking-meter/parking-meter-set/parking-meter-set.page'
 
 @Component({
   selector: 'page-scanner',

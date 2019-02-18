@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="close()" ion-button icon-only fill="clear" size="large" color="dark">
+      <ion-icon name="close" style="color: black"></ion-icon>
+    </ion-button>
+    <ion-title>Select A Vehicle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let i of vehicles">
+
+
+    <ion-row class="payment-row" *ngIf="this.i.rego_number == this.vehicle.rego_number">
+      <ion-col size="3">
+        <div class="center">
+          <img class="car-icon" src="../assets/uber-go.svg" />
+        </div>
+      </ion-col>
+      <ion-col>
+        <h3 class="card">{{i.car_type}}</h3>
+        <h3 class="card">{{i.rego_number}}</h3>
+      </ion-col>
+      <ion-col size="3">
+        <div class="center">
+          <ion-icon class="icon-tick" name="checkmark-circle"></ion-icon>
+        </div>
+      </ion-col>
+      <div class="seporator-line"></div>
+    </ion-row>
+
+    <ion-row class="payment-row" *ngIf="this.i.rego_number != this.vehicle.rego_number" (click)="setDefault(i)">
+      <ion-col size="3">
+        <div class="center">
+          <!--<img class="car-icon" src="../assets/uber-go.svg" />-->
+        </div>
+      </ion-col>
+      <ion-col>
+        <h3 class="card">{{i.car_type}}</h3>
+        <h3 class="card">{{i.rego_number}}</h3>
+      </ion-col>
+      <ion-col size="3">
+        <div class="center">
+          <!--<ion-icon class="icon-tick" name="checkmark-circle"></ion-icon>-->
+        </div>
+      </ion-col>
+      <div class="seporator-line"></div>
+    </ion-row>
+
+
+
+
+
+    <!--<ion-item *ngIf="this.i.rego_number == this.vehicle.rego_number" detail>
+      <ion-label class="model" position="stacked">{{i.car_type}}</ion-label>
+      <ion-input class="registration" disabled>
+        <ion-icon class="icon" name="checkmark-circle"></ion-icon>
+        {{i.rego_number}}
+      </ion-input>
+    </ion-item>
+    <ion-item (click)="setDefault(i)" *ngIf="this.i.rego_number != this.vehicle.rego_number" detail>
+      <ion-label class="model" position="stacked">{{i.car_type}}</ion-label>
+      <ion-input class="registration" disabled>{{i.rego_number}}</ion-input>
+    </ion-item>-->
+  </ion-list>
+</ion-content>
