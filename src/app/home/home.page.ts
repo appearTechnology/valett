@@ -36,8 +36,6 @@ export class HomePage {
     public menuCtrl: MenuController,
     private authService: AuthServiceService,
     private toastCtrl: ToastController, ) {
-
-
   }
 
   ionViewWillEnter() {
