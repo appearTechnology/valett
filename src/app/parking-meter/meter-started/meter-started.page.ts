@@ -1,4 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {FCM } from '@ionic-native/fcm/ngx';
+import { AuthServiceService } from '../../services/auth-service.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+
+export interface Detail {
+  time_from: number
+  time_to: number
+  alert_time: number
+  total_cost: string
+  fcm: string
+}
 
 @Component({
   selector: 'app-meter-started',
@@ -7,9 +21,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeterStartedPage implements OnInit {
 
-  constructor() { }
+  uid: string;
+  subs: Subscription[] = [];
+  array: Detail[] = null;
+  alertTime: number = 0;
+
+  constructor(private afs: AngularFirestore,
+    private authService: AuthServiceService,
+    private router: Router,
+    ) { }
 
   ngOnInit() {
+    this.auth()
+    
+  }
+
+  auth() {
+    const sub = this.authService.getAuth().subscribe(auth => {
+      if (auth) {
+        this.uid = auth.uid
+        this.getData()
+      } else {
+        this.router.navigate(['login'])
+      }
+    });
+    this.subs.push(sub)
+  }
+
+  getData(): AngularFirestoreCollection<Detail[]> {
+    this.getDetail()
+    return this.afs.collection(`parking`).doc(`${this.uid}`).collection('parkings')
+  }
+
+  getDetail() {
+    this.alertTime = this.array[0].alert_time
   }
 
 }

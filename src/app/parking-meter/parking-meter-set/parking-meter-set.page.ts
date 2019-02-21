@@ -13,6 +13,7 @@ import { CarDefaultPage } from '../../car/car-default/car-default.page'
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {FCM } from '@ionic-native/fcm/ngx';
 
 @Component({
   selector: 'app-parking-meter-set',
@@ -27,7 +28,7 @@ export class ParkingMeterSetPage implements OnInit {
   time: number;
   maxTime: number;
   minTime: number;
-  total: any;
+  total: string;
   id: string;
   day: number;
   hour: any;
@@ -40,12 +41,16 @@ export class ParkingMeterSetPage implements OnInit {
   vehicles: Vehicle[];
   vehicle: Vehicle;
   parking: Parking;
+  milliSecond: number;
+  fcmToken: string;
+  alertTimer: number;
 
 
   currentHours: any;
   currentMinutes: any;
   currentSeconds: any;
-  currentTimeString: any
+  currentTimeString: any;
+  endMilli: number;
 
   constructor(
     public modalController: ModalController,
@@ -54,17 +59,27 @@ export class ParkingMeterSetPage implements OnInit {
     private vehicleService: VehicleService,
     private authService: AuthServiceService,
     private parkingService: ParkingService,
-    private afs: AngularFirestore) { }
+    private afs: AngularFirestore,
+    private fcm: FCM
+    ) { }
 
   ngOnInit() {
     this.minutes = 0
-    this.total = 0.00
+    this.total = "0.00"
     this.id = this.value
     this.loaded = 0
     this.auth()
     this.getTodaysDay()
     this.getCurrentTime()
     this.getMeter()
+    this.getFCM()
+  }
+
+  getFCM() {
+    this.fcm.getToken().then(token => {
+      this.fcmToken = token
+      console.log(this.fcmToken);
+    });
   }
 
   auth() {
@@ -79,6 +94,8 @@ export class ParkingMeterSetPage implements OnInit {
     });
     this.subs.push(sub)
   }
+
+  
 
   getDefaultVehicle() {
     const sub = this.vehicleService.getUserDefaultVehicle(this.uid)
@@ -132,8 +149,11 @@ export class ParkingMeterSetPage implements OnInit {
   add() {
     if (this.minutes != this.maxTime) {
       this.minutes = this.minutes + 5
-
       this.updatePrice(this.minutes)
+      this.endMilli = new Date(this.milliSecond+1000*60*this.minutes).getTime();
+      this.milliSecond = new Date().getTime();
+      this.alertTimer = new Date(this.milliSecond+1000*60*(this.minutes-5)).getTime();
+      
       //this.price = this.minutes * this.price
     }
   }
@@ -142,6 +162,10 @@ export class ParkingMeterSetPage implements OnInit {
     if (this.minutes != this.minTime) {
       this.minutes = this.minutes - 5
       this.updatePrice(this.minutes)
+      this.endMilli = new Date(this.milliSecond+1000*60*this.minutes).getTime();
+      this.milliSecond = new Date().getTime();
+      this.alertTimer = new Date(this.milliSecond+1000*60*(this.minutes-5)).getTime();
+      
     }
   }
 
@@ -179,8 +203,6 @@ export class ParkingMeterSetPage implements OnInit {
   }
 
   startMeter() {
-
-
     // Get the date of booking in string format
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var d = new Date();
@@ -188,10 +210,13 @@ export class ParkingMeterSetPage implements OnInit {
     var mm = months[d.getMonth()]
     var yy = d.getFullYear()
     var stringDate = dd + " " + mm + " " + yy
+    
     var parking = {
-      time_set: this.currentHours,
+      time_from: this.milliSecond,
+      time_to: this.endMilli,
+      alert_time: this.alertTimer,
       total_cost: this.total,
-      dateString: stringDate
+      fcm: this.fcmToken,
     }
 
     var db = this.afs.collection(`parking`).doc(`${this.uid}`).collection('parkings').add(parking).then(i => {
@@ -200,11 +225,6 @@ export class ParkingMeterSetPage implements OnInit {
         return i
       })
     })
-
-    //this.parkingService.setMeter(parking)
-
-    //this.router.navigate(['meter-started'])
-    //  this.close()
   }
 
 
