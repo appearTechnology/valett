@@ -37,7 +37,7 @@ export class ScannerPage implements OnInit {
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
-    this.CameraEnabled = 1
+    this.CameraEnabled = 2
   }
 
   prepareCamera() {

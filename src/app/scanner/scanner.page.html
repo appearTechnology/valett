@@ -15,12 +15,16 @@
 
 <ion-content fullscreen *ngIf="this.CameraEnabled == 3">
   <div class="header-div">
+    <ion-button (click)="next()" ion-button icon-only fill="blue" size="large" color="light">
+      next
+    </ion-button>
   </div>
 
   <div>
     <ion-button (click)="close()" ion-button icon-only fill="clear" size="large" color="dark">
       <ion-icon name="close" style="color: white"></ion-icon>
     </ion-button>
+
   </div>
   <div style="margin-top: 80px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center" (click)="switch()">
     <img src="assets/focus.svg" *ngIf="showCamera" id="testImage" style="height: 200px;" />
@@ -42,6 +46,9 @@
 
 <ion-content class="no-permission" fullscreen *ngIf="this.CameraEnabled == 2">
   <div class="header-div">
+    <ion-button (click)="next()" ion-button icon-only fill="blue" size="large" color="light">
+      next
+    </ion-button>
   </div>
 
   <div>
