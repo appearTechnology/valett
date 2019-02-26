@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
     } else {
       this.authService.login(this.email, this.password).then(res => {
         this.SuccessPresentToast()
-        this.router.navigate(['home']);
+        this.router.navigate(['landing']);
       }).catch(err => {
         this.FailErrPresentToast(err)
       })

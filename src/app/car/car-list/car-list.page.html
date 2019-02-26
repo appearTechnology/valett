@@ -16,7 +16,7 @@
         {{i.rego_number}}
       </ion-input>
     </ion-item>
-    <ion-item (click)="setDefault(i)" *ngIf="this.i.rego_number != this.vehicle.rego_number" detail>
+    <ion-item *ngIf="this.i.rego_number != this.vehicle.rego_number" detail>
       <ion-label class="model" position="stacked">{{i.car_type}}</ion-label>
       <ion-input class="registration" disabled>{{i.rego_number}}</ion-input>
     </ion-item>

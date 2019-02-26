@@ -4,8 +4,10 @@ ion-content{
 }
 
 ion-toolbar {
-    --background: #000;
+    --background: #ECF0F1;
     --ion-color-base: transparent !important;
+    --border-color: transparent !important;
+    --border-width: 0;
 }
 
 .no-permission{
@@ -19,4 +21,27 @@ ion-toolbar {
 
 .code{
   border-radius: 8px;
+}
+
+.header-div{
+  height: 50px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.h3{
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-family: 'Avenir';
+  font-size: 17px;
+  font-weight: 500;
+  color: white;
+  padding-left: 20px;
+}
+
+.loader-1{
+  width: 100%;
+  height: 100%;
+  background-color: white
 }

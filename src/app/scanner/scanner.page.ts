@@ -18,9 +18,7 @@ export class ScannerPage implements OnInit {
   showCamera = true;
   showText = false;
   flashEnable = false;
-  CameraEnabled = 2
-
-
+  CameraEnabled = 1
 
   constructor(
     private router: Router,
@@ -29,20 +27,17 @@ export class ScannerPage implements OnInit {
     public alertController: AlertController,
     public menuCtrl: MenuController,
     public modalController: ModalController) {
+    //this.CameraEnabled = 1
   }
 
 
   ngOnInit() {
-
+    this.prepareCamera();
   }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
-    this.prepareCamera();
-  }
-
-  ionViewDidEnter() {
-
+    this.CameraEnabled = 1
   }
 
   prepareCamera() {
@@ -50,7 +45,9 @@ export class ScannerPage implements OnInit {
       .then((status: QRScannerStatus) => {
         if (status.authorized) {
           console.log('Camera Permission Given');
-          this.CameraEnabled = 3
+          setTimeout(() => {
+            this.CameraEnabled = 3
+          }, 2000);
           this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
             console.log('Scanned something', text);
             if (this.showCamera) {
@@ -100,7 +97,7 @@ export class ScannerPage implements OnInit {
   }
 
   close() {
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('landing');
     //this.modalCtrl.dismiss();
     this.qrScanner.destroy();
   }

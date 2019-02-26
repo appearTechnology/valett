@@ -85,7 +85,7 @@ async FailErrPresentToast(err: any) {
     if (auth) {
       this.id = auth.uid
       this.userService.newClient(value, this.id);
-      this.router.navigate(['home']);
+      this.router.navigate(['landing']);
     } else {
     }
   });

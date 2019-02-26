@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="openMenu()" ion-button icon-only fill="clear" size="large" color="dark">
+      <ion-icon name="menu" style="color: black"></ion-icon>
+    </ion-button>
+    <ion-title class="title" style="color: black; font-family: 'Avenir';"></ion-title>
+    <!--<button ion-button large (click)="close()" style="position: absolute; margin-left: 10px; margin-top: -24px; width: 30px; height: 30px; background: transparent; color: white"><ion-icon name="close" style="width:20px; height:20px;"></ion-icon></button>-->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="center-align">
+    <h3 class="h3">Scan QR code</h3>
+    <img src="assets/qr-rounded.svg" class="focus"/>
+    <h3 class="h3">Codes are located on <br /> local parking meters</h3>
+  </div>
+
+  <ion-footer class="footer">
+    <div class="center">
+      <button ion-button class="buttons" (click)="switch()">Park</button>
+    </div>
+    <!--<ion-button class="buttons" (click)="logout()" expand="block">logout</ion-button>-->
+  </ion-footer>
+</ion-content>

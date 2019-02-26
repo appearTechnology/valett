@@ -95,7 +95,7 @@ export class ParkingMeterSetPage implements OnInit {
     this.subs.push(sub)
   }
 
-  
+
 
   getDefaultVehicle() {
     const sub = this.vehicleService.getUserDefaultVehicle(this.uid)
@@ -153,7 +153,7 @@ export class ParkingMeterSetPage implements OnInit {
       this.endMilli = new Date(this.milliSecond+1000*60*this.minutes).getTime();
       this.milliSecond = new Date().getTime();
       this.alertTimer = new Date(this.milliSecond+1000*60*(this.minutes-5)).getTime();
-      
+
       //this.price = this.minutes * this.price
     }
   }
@@ -165,7 +165,7 @@ export class ParkingMeterSetPage implements OnInit {
       this.endMilli = new Date(this.milliSecond+1000*60*this.minutes).getTime();
       this.milliSecond = new Date().getTime();
       this.alertTimer = new Date(this.milliSecond+1000*60*(this.minutes-5)).getTime();
-      
+
     }
   }
 
@@ -210,7 +210,7 @@ export class ParkingMeterSetPage implements OnInit {
     var mm = months[d.getMonth()]
     var yy = d.getFullYear()
     var stringDate = dd + " " + mm + " " + yy
-    
+
     var parking = {
       time_from: this.milliSecond,
       time_to: this.endMilli,

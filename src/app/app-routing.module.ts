@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'register-vehicle', loadChildren: './car/register-vehicle/register-vehicle.module#RegisterVehiclePageModule' },
   { path: 'scan-vehicle', loadChildren: './car/scan-vehicle/scan-vehicle.module#ScanVehiclePageModule' },
   { path: 'meter-started', loadChildren: './parking-meter/meter-started/meter-started.module#MeterStartedPageModule' },
+  { path: 'landing', loadChildren: './landing/landing.module#LandingPageModule' },
   //{ path: 'car-default', loadChildren: './car/car-default/car-default.module#CarDefaultPageModule' }
 ];
 
