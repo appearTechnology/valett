@@ -33,14 +33,13 @@ export class MeterStartedPage implements OnInit {
 
   ngOnInit() {
     this.auth()
-    
+
   }
 
   auth() {
     const sub = this.authService.getAuth().subscribe(auth => {
       if (auth) {
         this.uid = auth.uid
-        this.getData()
       } else {
         this.router.navigate(['login'])
       }
@@ -48,13 +47,6 @@ export class MeterStartedPage implements OnInit {
     this.subs.push(sub)
   }
 
-  getData(): AngularFirestoreCollection<Detail[]> {
-    this.getDetail()
-    return this.afs.collection(`parking`).doc(`${this.uid}`).collection('parkings')
-  }
 
-  getDetail() {
-    this.alertTime = this.array[0].alert_time
-  }
 
 }
