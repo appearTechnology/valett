@@ -216,7 +216,7 @@ export class ParkingMeterSetPage implements OnInit {
       time_to: this.endMilli,
       alert_time: this.alertTimer,
       total_cost: this.total,
-      fcm: this.fcmToken,
+      //fcm: this.fcmToken,
     }
 
     var db = this.afs.collection(`parking`).doc(`${this.uid}`).collection('parkings').add(parking).then(i => {
