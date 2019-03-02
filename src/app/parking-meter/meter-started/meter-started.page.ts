@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import {FCM } from '@ionic-native/fcm/ngx';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';

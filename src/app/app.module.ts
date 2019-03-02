@@ -29,6 +29,8 @@ import { LottieAnimationViewModule } from 'ng-lottie';
 import { ComponentsModule } from './components/components.module'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import {Firebase} from "@ionic-native/firebase/ngx";
+import {FcmService} from "./fcm.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -53,6 +55,8 @@ import { Diagnostic } from '@ionic-native/diagnostic/ngx';
     Geolocation,
     AndroidPermissions,
     Diagnostic,
+    Firebase,
+    FcmService,
     QRScanner,
     OpenNativeSettings,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

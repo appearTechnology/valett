@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ModalController } from '@ionic/angular';
 
 import { ListPage } from './list/list.page';
+import {FcmService} from "./fcm.service";
 
 
 
@@ -36,7 +37,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private fcm: FcmService
   ) {
     this.initializeApp();
   }
@@ -45,6 +47,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.fcm.getToken();
     });
   }
 

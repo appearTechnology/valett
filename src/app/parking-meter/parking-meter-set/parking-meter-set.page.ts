@@ -13,7 +13,7 @@ import { CarDefaultPage } from '../../car/car-default/car-default.page'
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import {FCM } from '@ionic-native/fcm/ngx';
+import {FcmService} from "../../fcm.service";
 
 @Component({
   selector: 'app-parking-meter-set',
@@ -60,7 +60,7 @@ export class ParkingMeterSetPage implements OnInit {
     private authService: AuthServiceService,
     private parkingService: ParkingService,
     private afs: AngularFirestore,
-    private fcm: FCM
+    private fcm: FcmService
     ) { }
 
   ngOnInit() {
@@ -69,24 +69,25 @@ export class ParkingMeterSetPage implements OnInit {
     this.id = this.value
     this.loaded = 0
     this.auth()
+    this.getFCM()
     this.getTodaysDay()
     this.getCurrentTime()
     this.getMeter()
-    this.getFCM()
   }
 
   getFCM() {
-    this.fcm.getToken().then(token => {
-      this.fcmToken = token
-      console.log(this.fcmToken);
-    });
+    this.fcmToken = this.fcm.token;
+    if (!this.fcmToken) this.fcm.getToken()
+        .then(() => {
+          this.fcmToken = this.fcm.token;
+        });
   }
 
   auth() {
     const sub = this.authService.getAuth().subscribe(auth => {
       if (auth) {
-        this.uid = auth.uid
-        this.getDefaultVehicle()
+        this.uid = auth.uid;
+        this.getDefaultVehicle();
         this.getVehicles()
       } else {
         this.router.navigate(['login'])
@@ -216,8 +217,10 @@ export class ParkingMeterSetPage implements OnInit {
       time_to: this.endMilli,
       alert_time: this.alertTimer,
       total_cost: this.total,
-      //fcm: this.fcmToken,
-    }
+      fcm: this.fcmToken,
+    };
+
+    console.log(parking, this.fcmToken);
 
     var db = this.afs.collection(`parking`).doc(`${this.uid}`).collection('parkings').add(parking).then(i => {
       this.router.navigate(['meter-started']).then(i => {

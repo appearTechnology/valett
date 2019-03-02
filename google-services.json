@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "221542002650",
+    "firebase_url": "https://valett-71809.firebaseio.com",
+    "project_id": "valett-71809",
+    "storage_bucket": "valett-71809.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221542002650:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221542002650-7jdq6ivn59rbkk1ik77qrgeclvul3bbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIPKDayM4o-DJX2wxZoW4G031NTGydJuc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

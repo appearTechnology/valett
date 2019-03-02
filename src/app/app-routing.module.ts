@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'scan-vehicle', loadChildren: './car/scan-vehicle/scan-vehicle.module#ScanVehiclePageModule' },
   { path: 'meter-started', loadChildren: './parking-meter/meter-started/meter-started.module#MeterStartedPageModule' },
   { path: 'landing', loadChildren: './landing/landing.module#LandingPageModule' },
-  { path: 'personal-info', loadChildren: './verification/personal-info/personal-info.module#PersonalInfoPageModule' },
+  // { path: 'personal-info', loadChildren: './verification/personal-info/personal-info.module#PersonalInfoPageModule' },
   //{ path: 'car-default', loadChildren: './car/car-default/car-default.module#CarDefaultPageModule' }
 ];
 
