@@ -31,6 +31,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import {Firebase} from "@ionic-native/firebase/ngx";
 import {FcmService} from "./fcm.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,7 +47,8 @@ import {FcmService} from "./fcm.service";
     ParkingMeterSetPageModule,
     CarDefaultPageModule,
     LottieAnimationViewModule.forRoot(),
-    ComponentsModule
+    ComponentsModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

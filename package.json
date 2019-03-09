@@ -37,6 +37,7 @@
     "angularfire2": "^5.1.1",
     "cordova": "^8.1.2",
     "cordova-android": "7.1.4",
+    "cordova-ios": "4.5.5",
     "cordova-open-native-settings": "^1.5.2",
     "cordova-plugin-add-swift-support": "^1.7.2",
     "cordova-plugin-android-permissions": "^1.0.0",
@@ -104,7 +105,8 @@
       "cordova-plugin-firebase": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

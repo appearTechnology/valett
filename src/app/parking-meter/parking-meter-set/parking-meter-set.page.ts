@@ -8,12 +8,13 @@ import { Parking } from '../../model/Parking'
 import { ParkingService } from '../../services/parking.service'
 import { AuthServiceService } from '../../services/auth-service.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import {Params, Router} from '@angular/router';
 import { CarDefaultPage } from '../../car/car-default/car-default.page'
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import {FcmService} from "../../fcm.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-parking-meter-set',
@@ -60,7 +61,8 @@ export class ParkingMeterSetPage implements OnInit {
     private authService: AuthServiceService,
     private parkingService: ParkingService,
     private afs: AngularFirestore,
-    private fcm: FcmService
+    private fcm: FcmService,
+    private http: HttpClient
     ) { }
 
   ngOnInit() {
@@ -210,7 +212,7 @@ export class ParkingMeterSetPage implements OnInit {
     var dd = d.getDate()
     var mm = months[d.getMonth()]
     var yy = d.getFullYear()
-    var stringDate = dd + " " + mm + " " + yy
+    var stringDate = dd + " " + mm + " " + yy;
 
     var parking = {
       time_from: this.milliSecond,
@@ -220,14 +222,31 @@ export class ParkingMeterSetPage implements OnInit {
       fcm: this.fcmToken,
     };
 
-    console.log(parking, this.fcmToken);
-
-    var db = this.afs.collection(`parking`).doc(`${this.uid}`).collection('parkings').add(parking).then(i => {
-      this.router.navigate(['meter-started']).then(i => {
-        this.close()
-        return i
-      })
+    var db = this.afs.collection(`parking`).doc(`${this.uid}`).collection('parkings').add(parking).then(doc => {
+      this.startBackendTimer(doc.id)
+        .then(() => {
+          this.close();
+          this.router.navigate(['meter-started'], {
+            queryParams: {
+              id: doc.id
+            }
+          });
+        });
     })
+  }
+
+  startBackendTimer(id: string) {
+    return new Promise(resolve => {
+      const body = {
+        id,
+        minutes: Math.ceil((this.endMilli - this.milliSecond) / (1000 * 60)),
+        update: false,
+        registration_id: this.fcmToken
+      };
+
+      this.http.post('https://us-central1-valett-71809.cloudfunctions.net/handleTimer', JSON.stringify(body))
+        .subscribe(() => resolve(), error => console.error(error))
+    });
   }
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthServiceService } from '../../services/auth-service.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Subscription } from 'rxjs';
 
 
@@ -23,22 +23,27 @@ export class MeterStartedPage implements OnInit {
   uid: string;
   subs: Subscription[] = [];
   array: Detail[] = null;
-  alertTime: number = 0;
+  alertTime = '';
+  timeFrom: number = 0;
+  timeTo: number = 0;
 
   constructor(private afs: AngularFirestore,
     private authService: AuthServiceService,
     private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
-    this.auth()
-
+    this.auth();
   }
 
   auth() {
     const sub = this.authService.getAuth().subscribe(auth => {
       if (auth) {
-        this.uid = auth.uid
+        this.uid = auth.uid;
+        this.route.queryParamMap.subscribe(query => {
+          this.updateTimer(query.get('id'));
+        });
       } else {
         this.router.navigate(['login'])
       }
@@ -46,6 +51,38 @@ export class MeterStartedPage implements OnInit {
     this.subs.push(sub)
   }
 
+  updateTimer(id: string) {
+    console.log(id);
+    var db = this.afs
+        .collection(`parking`)
+        .doc(`${this.uid}`)
+        .collection('parkings')
+        .doc(`${id}`)
+        .valueChanges()
+        .subscribe((doc: any) => {
+          this.timeFrom = doc.time_from;
+          this.timeTo = doc.time_to;
+          this.updateTimerView();
+        });
+  }
 
+  updateTimerView() {
+    const interval = setInterval(() => {
+      const now = (new Date).getTime();
+      const remaining = this.timeTo - now;
 
+      if (remaining <= 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      this.alertTime = this.millisToMinutesAndSeconds(remaining);
+    }, 1000);
+  }
+
+  millisToMinutesAndSeconds(millis) {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0) as any;
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
 }
