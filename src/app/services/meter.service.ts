@@ -13,6 +13,7 @@ export class MeterService {
   meterDoc: AngularFirestoreDocument<Meter>;
   meters: Observable<Meter[]>;
   meter: Observable<Meter>;
+  id: string;
 
   constructor(private afs: AngularFirestore) { }
 

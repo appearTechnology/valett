@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AuthServiceService } from '../../services/auth-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Subscription } from 'rxjs';
+import {MeterService} from "../../services/meter.service";
 
 
 export interface Detail {
@@ -30,7 +31,8 @@ export class MeterStartedPage implements OnInit {
   constructor(private afs: AngularFirestore,
     private authService: AuthServiceService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private meterService: MeterService
     ) { }
 
   ngOnInit() {
@@ -41,9 +43,7 @@ export class MeterStartedPage implements OnInit {
     const sub = this.authService.getAuth().subscribe(auth => {
       if (auth) {
         this.uid = auth.uid;
-        this.route.queryParamMap.subscribe(query => {
-          this.updateTimer(query.get('id'));
-        });
+        this.updateTimer(this.meterService.id);
       } else {
         this.router.navigate(['login'])
       }

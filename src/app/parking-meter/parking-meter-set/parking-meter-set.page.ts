@@ -226,17 +226,17 @@ export class ParkingMeterSetPage implements OnInit {
       this.startBackendTimer(doc.id)
         .then(() => {
           this.close();
-          this.router.navigate(['meter-started'], {
-            queryParams: {
-              id: doc.id
-            }
-          });
-        });
+          this.meterService.id = doc.id;
+          this.router.navigate(['meter-started']);
+        })
+        .catch(error => {
+            console.log(error.toString())
+        })
     })
   }
 
   startBackendTimer(id: string) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const body = {
         id,
         minutes: Math.ceil((this.endMilli - this.milliSecond) / (1000 * 60)),
@@ -245,7 +245,7 @@ export class ParkingMeterSetPage implements OnInit {
       };
 
       this.http.post('https://us-central1-valett-71809.cloudfunctions.net/handleTimer', JSON.stringify(body))
-        .subscribe(() => resolve(), error => console.error(error))
+        .subscribe(() => resolve(), error => resolve())
     });
   }
 
