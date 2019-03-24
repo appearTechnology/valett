@@ -245,9 +245,7 @@ export class ParkingMeterSetPage implements OnInit {
       };
 
       this.http.post('https://us-central1-valett-71809.cloudfunctions.net/handleTimer', JSON.stringify(body))
-        .subscribe(() => resolve(), error => resolve())
+          .subscribe(() => resolve(), error => resolve())
     });
   }
-
-
 }
